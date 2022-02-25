@@ -13,3 +13,18 @@ g:\Mit drev\MyWork\Specialisterne_Git\Black Jack\obj\Debug\net6.0\refint\Black J
 g:\Mit drev\MyWork\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.pdb
 g:\Mit drev\MyWork\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.genruntimeconfig.cache
 g:\Mit drev\MyWork\Specialisterne_Git\Black Jack\obj\Debug\net6.0\ref\Black Jack.dll
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\bin\Debug\net6.0\Black Jack.exe
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\bin\Debug\net6.0\Black Jack.deps.json
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\bin\Debug\net6.0\Black Jack.runtimeconfig.json
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\bin\Debug\net6.0\Black Jack.dll
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\bin\Debug\net6.0\Black Jack.pdb
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.csproj.AssemblyReference.cache
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.AssemblyInfoInputs.cache
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.AssemblyInfo.cs
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.csproj.CoreCompileInputs.cache
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.dll
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\refint\Black Jack.dll
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.pdb
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\Black Jack.genruntimeconfig.cache
+c:\Users\KOM\Documents\Specialisterne_Git\Black Jack\obj\Debug\net6.0\ref\Black Jack.dll

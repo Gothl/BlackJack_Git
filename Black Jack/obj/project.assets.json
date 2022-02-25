@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Mit drev\\MyWork\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
+      "projectUniqueName": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
       "projectName": "Black Jack",
-      "projectPath": "G:\\Mit drev\\MyWork\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
+      "projectPath": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
       "packagesPath": "C:\\Users\\KOM\\.nuget\\packages\\",
-      "outputPath": "G:\\Mit drev\\MyWork\\Specialisterne_Git\\Black Jack\\obj\\",
+      "outputPath": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\KOM\\AppData\\Roaming\\NuGet\\NuGet.Config"
