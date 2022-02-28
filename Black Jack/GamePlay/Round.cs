@@ -5,7 +5,7 @@ namespace Black_Jack {
         public List<Person> peopleInRound = new List<Person>();
 
         //New shuffled deck for round.
-        public Deck d = new Deck();
+        //public Deck d = new Deck();
 
 
         /// <summary> Add a person to the current round. </summary>
@@ -46,20 +46,34 @@ namespace Black_Jack {
         }
         /// <summary> Game play in round</summary>
         public Round(){
+            Deck deck = new Deck();
+            Dealer dealer = (Dealer)peopleInRound[1];
+            Player p = (Player)peopleInRound[2];
             //Welcome to the round
-            
+        
             //place your bets (foreach) everyone except the dealer
+            p.PlaceBet(); 
 
             //everyone (incl dealer gets one card)
+            foreach (Person pers in peopleInRound){
+                dealer.DealCard(deck, 1, pers);
+            }
 
             //Everyone (excl. dealer gets one card)
-
+            foreach (Person pers in peopleInRound){
+                dealer.DealCard(deck, 1, pers);//TODO: NOT finished! Needs to skip dealer on this one!!!
+            }
             //The dealer gets one card facing down (the dealer.faceDownCardValue is set)
+            dealer.faceDownCardValue = deck.cardList[0]; deck.cardList.Remove(deck.cardList[0]); 
 
             //Display the terminal player's cards (and possibly the total?)
+            System.Console.WriteLine("Here are the values of the cards in your hand:");//Check for A/1, and give option to change the value.
+            p.hand.displayCardlist();
 
             //check each player for 21 --> the player wins 1½ times their bet from dealer and player is done for the round //TODO: understand, if dealer needs to have a fixed amount of money, or just infinite
-
+            foreach (Person pers in peopleInRound){
+                pers.CheckHand();
+            }
             //check each player for above 21
 
             //else (if below 21) dealer asks for action (Hit or Stay) - no limit on how many hits a player can ask for in a turn.(keep asking)
