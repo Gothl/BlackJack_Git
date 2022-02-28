@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj": {}
+    "C:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj": {}
   },
   "projects": {
-    "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj": {
+    "C:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
+        "projectUniqueName": "C:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
         "projectName": "Black Jack",
-        "projectPath": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
+        "projectPath": "C:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\Black Jack.csproj",
         "packagesPath": "C:\\Users\\KOM\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\obj\\",
+        "outputPath": "C:\\Users\\KOM\\Documents\\Specialisterne_Git\\Black Jack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\KOM\\AppData\\Roaming\\NuGet\\NuGet.Config"
