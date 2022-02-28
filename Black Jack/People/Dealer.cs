@@ -24,5 +24,20 @@ namespace Black_Jack {
             #endif
             //
         }
+        public override HandState CheckHand(){
+            switch (hand.total){
+                case 21:
+                    //System.Console.WriteLine("Dealer has 21");
+                    return HandState.Dealer_Equals21;
+                case > 21:
+                    //End round and give winnings to remaining players.
+                    return HandState.Dealer_Above21;
+                case < 17:
+                    //Take another card
+                    return HandState.Dealer_Below17;
+                default:
+                    return HandState.Dealer_Below21;
+            }
+        }
     }
 }
