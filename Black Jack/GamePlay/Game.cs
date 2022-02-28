@@ -16,7 +16,7 @@ namespace Black_Jack {
             #endif
             string? alias = Console.ReadLine();
             //Console.WriteLine(alias);
-            while (String.IsNullOrWhiteSpace(alias)){//.Length == 0){
+            while (String.IsNullOrWhiteSpace(alias)){
                 Console.WriteLine("No name was entered. Please try again.");
                 alias = Console.ReadLine();
             } 
@@ -44,7 +44,7 @@ namespace Black_Jack {
                     depositString = Console.ReadLine();
                     continue;
                 }
-                break;//input i a string representation of a whole number between 1000 ad 50000
+                break;//input is a string representation of a whole number between 1000 ad 50000
             }
             peopleInGame[0].DepositToBankroll(deposit);
             System.Console.WriteLine("\nThank you! A deposit of {0} credits has been made to your bankroll,\nwhich you can now use to place your bet for the first round.", deposit);
