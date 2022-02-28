@@ -33,8 +33,8 @@ namespace Black_Jack {
         }
 
 
-        /// <summary> Deposit gamling credits. </summary>
-        public void TransferWinnings(){
+        /// <summary> Transfer the winnings from a round.</summary>
+        public void TransferWinnings(){//Find some way to calculate winnings/determine them.
             #if ROUND_TEST
                 System.Console.WriteLine("Round.TransferWinnings is entered");
             #endif
@@ -44,5 +44,39 @@ namespace Black_Jack {
                 p.roundWinnings = 0; p.bet = 0;
             }
         }
+        /// <summary> Game play in round</summary>
+        public Round(){
+            //Welcome to the round
+            
+            //place your bets (foreach) everyone except the dealer
+
+            //everyone (incl dealer gets one card)
+
+            //Everyone (excl. dealer gets one card)
+
+            //The dealer gets one card facing down (the dealer.faceDownCardValue is set)
+
+            //Display the terminal player's cards (and possibly the total?)
+
+            //check each player for 21 --> the player wins 1½ times their bet from dealer and player is done for the round //TODO: understand, if dealer needs to have a fixed amount of money, or just infinite
+
+            //check each player for above 21
+
+            //else (if below 21) dealer asks for action (Hit or Stay) - no limit on how many hits a player can ask for in a turn.(keep asking)
+
+            //After everyone have made their choice to stay, the dealer flips their card (adds it to their hand.cardList)
+
+            //Dealers total now dictates whether they must take another card or not. (below 17 or not)
+
+            //If dealer busts, every remaining player in the round wins twice their bet.
+
+            //If the dealer DOESN'T bust, only players with totals bigger than the dealer win twice their bet AND everyone else loses their bets.
+
+            //HOWEVER! Anyone with th esame total as the dealer, get to keep their bet. (this is a "Push")
+
+            //The round then ends with any winnings being deposited the the players's bankroll.
+
+        } 
+
     }
 }
