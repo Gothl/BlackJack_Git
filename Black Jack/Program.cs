@@ -7,9 +7,10 @@ namespace Black_Jack{
             #endif
             System.Console.WriteLine("\n+------------------------+\n| Welcome to Black Jack! |\n+------------------------+\n");
             System.Console.WriteLine("The rules are as follows:\n");
-            System.Console.WriteLine("To start the game, please enter you prefered name and press enter."); 
+            System.Console.WriteLine("To start the game, please enter your name and press enter."); 
             Game game = new Game(); 
-            game.GetPlayerName();        
+            game.SetUpPlayer();
+            game.RunGame();    
         }
     }
 }
