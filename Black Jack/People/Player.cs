@@ -11,7 +11,7 @@ namespace Black_Jack {
 
 
         /// <summary> Choose to hit or stay. </summary>
-        public void ChooseAction(string a){
+        public void ChooseAction(){
             //Ask for choice of action:
 
             //if "hit":
@@ -22,7 +22,38 @@ namespace Black_Jack {
         }
 
         /// <summary> Place bet for that round. </summary>
-        public void PlaceBet(int credits){    
-            Bet += credits;}
+        public void PlaceBet(){    
+            Console.WriteLine("Please place your bet. You have {0} credits available in your bankroll", bankroll);//peopleInRound[1].bankroll);
+            string? stringBet = System.Console.ReadLine();
+            //TODO: Check for valid string of number characters
+
+            //Convert to Int32
+            int credits = Convert.ToInt32(stringBet);
+            //Check that the requested amount is available in bankroll
+            
+            Bet += credits;
+            bankroll -= credits;
+        }
+        public override HandState CheckHand(){
+        
+            switch (hand.total)
+            {
+                case 21: 
+                    //Win!
+                    return HandState.Player_Equals21;
+                case > 21: 
+                    return HandState.Player_Above21;
+                case < 21:
+                    return HandState.Player_Below21;
+            }
+            
+        
+            //Equals 21 -> Win 1,5 //We change it to x3 instead to get around having to use floats
+            
+            //Is above 21 -> Bust()
+
+            //Is below 21 -> ChooseAction()
+            throw new NotImplementedException();
+        }
     }
 }
