@@ -9,10 +9,8 @@ namespace Black_Jack {
 
         /// <summary> Declares the person bust, if the hand total is <= 21. </summary>
         public void Bust() {
-            if (hand.total <= 21){
                 System.Console.WriteLine("{0} is bust, and has lost this round.", name);
                 isActive = false;
-            }
         }//TODO: implement different rules for what happens for different people (possibly using an overwrite in the dealer's case)
         
 
@@ -24,6 +22,11 @@ namespace Black_Jack {
         public void WithdrawFromBankroll(int credits){//TODO: Check that that amount is available before calling function.
             // System.Console.WriteLine("Please enter the amount of credits, you wish to withdraw.");
             // System.Console.ReadLine(); 
-            bankroll -= credits;}
+            bankroll -= credits;
+        }
+
+
+        /// <summary> Place bet for that round. </summary>
+        public abstract HandState CheckHand();
     }
 }
