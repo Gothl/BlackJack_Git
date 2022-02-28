@@ -1,4 +1,4 @@
-#define DEALER_TEST
+//#define DEALER_TEST
 namespace Black_Jack {
     public class Dealer : Person {
         public Dealer(){
@@ -11,7 +11,7 @@ namespace Black_Jack {
 
 
         /// <summary> Deal cards from deck to player. </summary>
-        public void DealCards(Deck d, int n, Person p){//TODO: figure out if you want to use the n here.
+        public void DealCard(Deck d, int n, Person p){//TODO: figure out if you want to use the n here.
             //Take card from deck (move it from Deck to Person P's hand. )
             #if DEALER_TEST
                 System.Console.WriteLine("DEALER: Dealer.DealCards is entered");
