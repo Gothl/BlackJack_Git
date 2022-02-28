@@ -14,6 +14,7 @@ namespace Black_Jack {
             return cardList.Count;
         }
 
+        public void displayCardlist(){foreach (int c in cardList){System.Console.WriteLine(c);}}
 
         #if CARD_LIST_TEST
         /// <summary> Prints all "cards" in the CardList </summary>
