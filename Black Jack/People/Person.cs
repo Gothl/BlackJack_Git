@@ -4,7 +4,11 @@ namespace Black_Jack {
         public string? name;
         public int bankroll, bet, roundWinnings;
         public bool isActive = true;//New people are active by default.
+        public bool isDealer;
         public Hand hand = new Hand();//New empty CardList for the person's hand of cards.
+
+        /// <summary> Choose to hit or stay. </summary>
+        public  abstract ActionState ChooseAction();
 
 
         /// <summary> Declares the person bust, if the hand total is <= 21. </summary>
