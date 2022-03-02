@@ -6,12 +6,13 @@ namespace Black_Jack {
                 System.Console.WriteLine("DEALER: A new Dealer i being created");
             #endif
                 name="the dealer";
+                isDealer = true;
         }
         public int faceDownCardValue;
 
 
         /// <summary> Deal cards from deck to player. </summary>
-        public void DealCard(Deck d, int n, Person p){//TODO: figure out if you want to use the n here.
+        public void DealCard(Deck d, Person p){//TODO: figure out if you want to use the n here.
             //Take card from deck (move it from Deck to Person P's hand. )
             #if DEALER_TEST
                 System.Console.WriteLine("DEALER: Dealer.DealCards is entered");
@@ -39,5 +40,13 @@ namespace Black_Jack {
                     return HandState.Dealer_Below21;
             }
         }
+
+        public  override ActionState ChooseAction(){
+            if (CheckHand() is HandState.Dealer_Below17){return ActionState.Dealer_Hit;}
+            if (CheckHand() is HandState.Dealer_Below21){return ActionState.Dealer_Stay;}
+            return ActionState.Next;
+
+        }
+
     }
 }
