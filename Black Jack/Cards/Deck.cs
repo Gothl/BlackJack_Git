@@ -1,4 +1,4 @@
-#define DECK_TEST
+//#define DECK_TEST
 namespace Black_Jack {
     public class Deck : CardList {
         public bool isEmpty;
