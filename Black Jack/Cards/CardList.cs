@@ -14,7 +14,26 @@ namespace Black_Jack {
             return cardList.Count;
         }
 
-        public void displayCardlist(){foreach (int c in cardList){System.Console.WriteLine(c);}}
+        public void displayCardlist(){
+            foreach (int c in cardList){
+                if(c < 10){
+                    System.Console.WriteLine("+--------+");
+                    System.Console.WriteLine("|      {0} |", c);
+                    System.Console.WriteLine("|        |");
+                    System.Console.WriteLine("|        |");
+                    System.Console.WriteLine("| {0}      |", c);
+                    System.Console.WriteLine("+--------+");
+                }
+                if(c > 9){
+                    System.Console.WriteLine("+--------+");
+                    System.Console.WriteLine("|     {0} |", c);
+                    System.Console.WriteLine("|        |");
+                    System.Console.WriteLine("|        |");
+                    System.Console.WriteLine("| {0}     |", c);
+                    System.Console.WriteLine("+--------+");
+                }
+            }
+        }
 
         #if CARD_LIST_TEST
         /// <summary> Prints all "cards" in the CardList </summary>
