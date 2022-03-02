@@ -1,25 +1,14 @@
 #define PLAYER_TEST
 namespace Black_Jack {
     public class Player : Person {
-        public int Bet {get; set;}
         public Player(string nm){
             #if PLAYER_TEST
                 System.Console.WriteLine("PLAYER: A new player is being created");
             #endif 
             name = nm;
+            isDealer = false;
         }//TODO: also set bet at some point.
 
-
-        /// <summary> Choose to hit or stay. </summary>
-        public void ChooseAction(){
-            //Ask for choice of action:
-
-            //if "hit":
-
-            //if "stay"
-
-            //else (invalid input)
-        }
 
         /// <summary> Place bet for that round. </summary>
         public void PlaceBet(){    
@@ -31,7 +20,7 @@ namespace Black_Jack {
             int credits = Convert.ToInt32(stringBet);
             //Check that the requested amount is available in bankroll
             
-            Bet += credits;
+            bet += credits;
             bankroll -= credits;
         }
         public override HandState CheckHand(){
@@ -53,7 +42,17 @@ namespace Black_Jack {
             //Is above 21 -> Bust()
 
             //Is below 21 -> ChooseAction()
-            throw new NotImplementedException();
+        }
+
+
+        public  override ActionState ChooseAction(){
+            //TODO: implement getting input about choice of action from terminal player.
+            System.Console.WriteLine("To add a new card to your hand, enter \"H\"/\"h\" for \"Hit\". Else enter \"S\"/\"s\" to \"Stay\".");
+            string? reply = System.Console.ReadLine();//TDOD:Check for proper input format and type.
+            if (reply == "H" || reply == "h"){return ActionState.Player_Hit;}
+            if (reply == "S" || reply == "s"){return ActionState.Player_Stay;}
+            System.Console.WriteLine("Invalid choice of action. You will keep your current hand.");
+            return ActionState.Next;
         }
     }
 }
