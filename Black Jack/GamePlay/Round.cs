@@ -87,7 +87,7 @@ namespace Black_Jack {
             }
 
             //The dealer gets one card facing down (the dealer.faceDownCardValue is set)
-            dealer.faceDownCardValue = deck.cardList[0]; deck.cardList.Remove(deck.cardList[0]); 
+            dealer.faceDownCardValue.cardValue = deck.cardList[0].cardValue; deck.cardList.Remove(deck.cardList[0]); 
 
             //Display the terminal player's cards (and possibly the total?)
             System.Console.WriteLine("Here are the cards in your hand:");//TODO:Check for A/1, and give option to change the value.
@@ -102,20 +102,26 @@ namespace Black_Jack {
             System.Console.WriteLine("|////////|");
             System.Console.WriteLine("+--------+");
 
+            
+            while (p.isActive){
+                p.hand.status = p.CheckHand();
+
+            }
+            //Check player's hand:
 
 
             //OBS! Players cannot possibly have 21 on the first round (unless they choose that, whivh is just illogical, so...)
             //     So logically, the first step would be to ask whether a player wants another card, and THEN checking the cards.
             
             //Ask for action FROM player:
-            while (p.isActive) {
-                if (p.ChooseAction() is ActionState.Player_Hit){
-                    // Player chooses hit:
-                    dealer.DealCard(deck, p);//dealer deals one card to the player.
-                }
-                if (p.ChooseAction() is ActionState.Player_Stay){break;}
-            }
-                //For later use if more than one player implemented:
+            // while (p.isActive) {
+            //     if (p.ChooseAction() is ActionState.Player_Hit){
+            //         // Player chooses hit:
+            //         dealer.DealCard(deck, p);//dealer deals one card to the player.
+            //     }
+            //     if (p.ChooseAction() is ActionState.Player_Stay){break;}
+            // }
+            //     //For later use if more than one player implemented:
                 // for (var i = 1; i <peopleInRound.Count; i++){//TODO: OBS! needs to start with players! THEN dealer.
 
                 //     if (peopleInRound[i].ChooseAction() is ActionState.Player_Hit){
@@ -133,21 +139,21 @@ namespace Black_Jack {
             
 
             //check each player for 21 --> the player wins 1½ times their bet from dealer and player is done for the round //TODO: understand, if dealer needs to have a fixed amount of money, or just infinite
-            foreach (Person pers in peopleInRound){
-                if (pers.CheckHand() == HandState.Player_Above21){//The currently player is BUST!
+            // foreach (Person pers in peopleInRound){
+            //     if (pers.CheckHand() == HandState.Player_Above21){//The currently player is BUST!
 
-                }
-                if (pers.CheckHand() == HandState.Dealer_Above21){//Dealer is BUST! Every remaining player wins twice their bet.
+            //     }
+            //     if (pers.CheckHand() == HandState.Dealer_Above21){//Dealer is BUST! Every remaining player wins twice their bet.
 
-                }
+            //     }
 
 
-                if (!pers.isDealer){
+            //     if (!pers.isDealer){
 
-                }
-                if (pers.isDealer){}
-                pers.CheckHand();
-            }
+            //     }
+            //     if (pers.isDealer){}
+            //     pers.CheckHand();
+            // }
 
             //check each player for above 21
 
