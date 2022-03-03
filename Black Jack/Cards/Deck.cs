@@ -1,19 +1,55 @@
-//#define DECK_TEST
+#define DECK_TEST
 namespace Black_Jack {
     public class Deck : CardList {
         public bool isEmpty;
+
+        public CardList deckOf52CardsList = new CardList();
         public Deck(){
             #if DECK_TEST
                 System.Console.WriteLine("A new deck is being created");
             #endif
-            // Create array of 24 copies of numbers between 1 and 9.
-            for (var j = 1; j < 10; ++j){
-                for (var i = 0; i < 24; ++i){
-                    cardList.Add(j);
+            deckOf52CardsList.cardList.AddRange(new List<Card>{
+                new Card(CardSymbol.Aces),
+                new Card(CardSymbol.Two),
+                new Card(CardSymbol.Three),
+                new Card(CardSymbol.Four),
+                new Card(CardSymbol.Five),
+                new Card(CardSymbol.Six),
+                new Card(CardSymbol.Seven),
+                new Card(CardSymbol.Eight),
+                new Card(CardSymbol.Nine),
+                new Card(CardSymbol.Ten),
+                new Card(CardSymbol.Jack),
+                new Card(CardSymbol.Queen),
+                new Card(CardSymbol.King)
+            });
+
+            #if DECK_TEST
+                System.Console.WriteLine("\nA single set of 13 cards:\n");
+                foreach (Card i in deckOf52CardsList.cardList){
+                    System.Console.WriteLine("{0}",i.cardSymbol);
                 }
+                System.Console.WriteLine("\nEND OF LIST\n");
+                System.Console.WriteLine("As cards, they become:");
+                deckOf52CardsList.displayCardlist();
+
+                
+            #endif
+            for (int i = 0; i < 24; i++){
+            cardList = cardList.Concat(deckOf52CardsList.cardList).ToList();
             }
-            //Add the 4*4*6=96 copies of 10 (for the cards 10, J, Q and K) to the array.
-            cardList = cardList.Concat(Enumerable.Repeat(10, 96)).ToList();
+            
+            // //Create array of 24 copies of numbers between 1 and 9.
+            // for (var j = 1; j < 10; ++j){
+            //     for (var i = 0; i < 24; ++i){
+            //         Card newCard = new Card(j);
+            //         cardList.Add(newCard);
+            //         //cardList.Add(j);
+            //     }
+            // }
+            // //Add the 4*4*6=96 copies of 10 (for the cards 10, J, Q and K) to the array.
+            //cardList = cardList.Concat(Enumerable.Repeat(10, 96)).ToList();
+            //cardList = cardList.Concat(Enumerable.Repeat(Card(10), 96)).ToList();
 
             #if DECK_TEST
                 Console.WriteLine("the new deck has {0} elements", cardList.Count);
@@ -25,7 +61,7 @@ namespace Black_Jack {
 
             #if DECK_TEST
             Console.WriteLine("\n Now all {0} numbers in random order:\n", cardList.Count);
-                foreach (var i in cardList){Console.WriteLine(i);}
+                foreach (var i in cardList){Console.WriteLine(i.cardSymbol);}
             #endif
         }    
             
