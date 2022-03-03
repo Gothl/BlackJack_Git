@@ -3,7 +3,7 @@ namespace Black_Jack {
     public class CardList {
 
         //A CardList consists of an array of integers.
-        public List<int> cardList = new List<int>();
+        public List<Card> cardList = new List<Card>();
         
         
         /// <summary> Returns the  amount of "cards" in the CardList </summary>
@@ -15,23 +15,8 @@ namespace Black_Jack {
         }
 
         public void displayCardlist(){
-            foreach (int c in cardList){
-                if(c < 10){
-                    System.Console.WriteLine("+--------+");
-                    System.Console.WriteLine("|      {0} |", c);
-                    System.Console.WriteLine("|        |");
-                    System.Console.WriteLine("|        |");
-                    System.Console.WriteLine("| {0}      |", c);
-                    System.Console.WriteLine("+--------+");
-                }
-                if(c > 9){
-                    System.Console.WriteLine("+--------+");
-                    System.Console.WriteLine("|     {0} |", c);
-                    System.Console.WriteLine("|        |");
-                    System.Console.WriteLine("|        |");
-                    System.Console.WriteLine("| {0}     |", c);
-                    System.Console.WriteLine("+--------+");
-                }
+            foreach (Card c in cardList){
+                c.DisplayCard();
             }
         }
 
