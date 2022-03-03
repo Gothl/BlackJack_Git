@@ -8,11 +8,11 @@ namespace Black_Jack {
                 name="the dealer";
                 isDealer = true;
         }
-        public int faceDownCardValue;
+        public Card faceDownCardValue = new Card(0);//cardValue set to 0 by deafult. Will be changed when dealer flips card.
 
 
         /// <summary> Deal cards from deck to player. </summary>
-        public void DealCard(Deck d, Person p){//TODO: figure out if you want to use the n here.
+        public void DealCard(Deck d, Person p){
             //Take card from deck (move it from Deck to Person P's hand. )
             #if DEALER_TEST
                 System.Console.WriteLine("DEALER: Dealer.DealCards is entered");
@@ -26,24 +26,25 @@ namespace Black_Jack {
             //
         }
         public override HandState CheckHand(){
+            //TODO: Add functionality that chooses what to do with any Aces/1s
             switch (hand.total){
-                case 21:
-                    //System.Console.WriteLine("Dealer has 21");
-                    return HandState.Dealer_Equals21;
-                case > 21:
+                 case 21:
+                    if (hand.cardList.Count() == 2){return HandState.BlackJack;} 
+                    else{// (hand.cardList.Count() > 2)
+                        return HandState.EqualTo21;
+                    }                case > 21:
                     //End round and give winnings to remaining players.
-                    return HandState.Dealer_Above21;
                 case < 17:
                     //Take another card
                     return HandState.Dealer_Below17;
                 default:
-                    return HandState.Dealer_Below21;
+                    return HandState.Below21;
             }
         }
 
         public  override ActionState ChooseAction(){
             if (CheckHand() is HandState.Dealer_Below17){return ActionState.Dealer_Hit;}
-            if (CheckHand() is HandState.Dealer_Below21){return ActionState.Dealer_Stay;}
+            if (CheckHand() is HandState.Below21){return ActionState.Dealer_Stay;}
             return ActionState.Next;
 
         }

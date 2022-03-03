@@ -24,16 +24,21 @@ namespace Black_Jack {
             bankroll -= credits;
         }
         public override HandState CheckHand(){
-        
-            switch (hand.total)
-            {
-                case 21: 
-                    //Win!
-                    return HandState.Player_Equals21;
+            //Print hand and ask if player wants to change the A.
+            //TODO: Add check for Aces/1s in hand.
+            //foreach (int i in hand)
+            switch (hand.total){
+                case 21:
+                    if (hand.cardList.Count() == 2){
+                        return HandState.BlackJack;
+                    } 
+                    else {//(hand.cardList.Count() > 2)
+                        return HandState.EqualTo21;
+                    }
                 case > 21: 
-                    return HandState.Player_Above21;
+                    return HandState.Bust;
                 case < 21:
-                    return HandState.Player_Below21;
+                    return HandState.Below21;
             }
             
         
