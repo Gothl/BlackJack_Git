@@ -1,4 +1,4 @@
-#define DECK_TEST
+//#define DECK_TEST
 namespace Black_Jack {
     public class Deck : CardList {
         public bool isEmpty;
@@ -9,7 +9,7 @@ namespace Black_Jack {
                 System.Console.WriteLine("A new deck is being created");
             #endif
             deckOf52CardsList.cardList.AddRange(new List<Card>{
-                new Card(CardSymbol.Aces),
+                new Card(CardSymbol.Ace),
                 new Card(CardSymbol.Two),
                 new Card(CardSymbol.Three),
                 new Card(CardSymbol.Four),
@@ -26,8 +26,8 @@ namespace Black_Jack {
 
             #if DECK_TEST
                 System.Console.WriteLine("\nA single set of 13 cards:\n");
-                foreach (Card i in deckOf52CardsList.cardList){
-                    System.Console.WriteLine("{0}",i.cardSymbol);
+                foreach (Card c in deckOf52CardsList.cardList){
+                    System.Console.WriteLine(c.cardSymbol);
                 }
                 System.Console.WriteLine("\nEND OF LIST\n");
                 System.Console.WriteLine("As cards, they become:");
