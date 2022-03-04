@@ -1,4 +1,4 @@
-#define GAME_TEST
+//#define GAME_TEST
 namespace Black_Jack {
     public class Game{
         public static Dealer dealer = new Dealer();
@@ -8,7 +8,6 @@ namespace Black_Jack {
 
         public List<Person> peopleInGame = new List<Person>{dealer};
         
-
         /// <summary> Set up a player with name, bankroll and bet from console, and add it to the PeopleInGame list. </summary>
         public void SetUpPlayer(){
             #if GAME_TEST
