@@ -5,6 +5,8 @@ namespace Black_Jack {
         public int bankroll, bet, roundWinnings;
         public bool isActive = true;//New people are active by default.
         public bool isDealer;
+
+        public ActionState action;
         public Hand hand = new Hand();//New empty CardList for the person's hand of cards.
 
         /// <summary> Choose to hit or stay. </summary>
