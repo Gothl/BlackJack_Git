@@ -1,4 +1,4 @@
-#define ROUND_TEST
+//#define ROUND_TEST
 namespace Black_Jack {
     public class Round {
         //New list of people for the new round.
@@ -26,11 +26,27 @@ namespace Black_Jack {
             peopleInRound.Remove(p);}
 
 
-        /// <summary> Compare the hands of different players. </summary>
-        public void CompareHands(Person p1, Person p2){
+        /// <summary> Compare the player and dealer's hands </summary>
+        public GameResult CompareHands(Player p, Dealer d){
             #if ROUND_TEST
                 System.Console.WriteLine("Round.CompareHands is entered");
             #endif
+            System.Console.WriteLine("player's hand state is {0}, while dealer's i {1}", p.hand.status, d.hand.status);
+            switch (p.hand.status, d.hand.status){
+                case (HandState.Bust       , _                      ): return GameResult.Player_Bust;
+                case ( < HandState.Bust    , HandState.Bust         ): return GameResult.Dealer_Bust;// the < is used as Bust has the highest enumeration.
+                case (HandState.BlackJack  , HandState.BlackJack    ): return GameResult.Push;
+                case (HandState.EqualTo21  , HandState.BlackJack    ): return GameResult.Dealer_BlackJack;
+                case (HandState.BlackJack  , < HandState.BlackJack  ): return GameResult.Player_BlackJack;//BlackJack has higher enumeration than any other from 21 to 2.
+                case (< HandState.EqualTo21, < HandState.EqualTo21  ): if(p.hand.total == d.hand.total){return GameResult.Push;}
+                                                                       if(p.hand.total <  d.hand.total){return GameResult.Dealer_Wins;}
+                                                                       else {//if(p.hand.total >  d.hand.total){
+                                                                           return GameResult.Player_Wins;
+                                                                    }
+                default:
+                    return GameResult.Unknown;
+            }
+
         }
 
 
@@ -52,9 +68,8 @@ namespace Black_Jack {
         }
 
 
-
         /// <summary> Gameplay in round</summary>
-        public Round(List<Person> gamePeople){
+        public Round(List<Person> gamePeople){//TODO: more encapsulation, less wall of code here.
             MakeListOfPeopleInNewRound(gamePeople);
             //playersInRound = peopleInRound.Skip(1).ToList();
             Deck deck = new Deck();
@@ -102,82 +117,77 @@ namespace Black_Jack {
             System.Console.WriteLine("|////////|");
             System.Console.WriteLine("+--------+");
 
-            
-            while (p.isActive){
+
+
+            //reset player action before each round
+            p.action = ActionState.Player_Hit;
+
+            //run loop until player chooses to stay
+            while (!(p.action is ActionState.Player_Stay)){
+                System.Console.WriteLine("This your hand now:");
+                p.hand.displayCardlist();
+                //Check for aces and possibly change their values
+                p.CheckForAce();
+                //Check the total of the hand (also depending on number of cards)
                 p.hand.status = p.CheckHand();
-
+                if (!(p.hand.status is HandState.Below21)){
+                    break;
+                }
+                //Ask player if htey want to hit or stay
+                p.action = p.ChooseAction();
+                if (p.action is ActionState.Player_Hit){
+                    //dealer deals player another card
+                    dealer.DealCard(deck, p);
+                }
             }
-            //Check player's hand:
 
 
-            //OBS! Players cannot possibly have 21 on the first round (unless they choose that, whivh is just illogical, so...)
-            //     So logically, the first step would be to ask whether a player wants another card, and THEN checking the cards.
-            
-            //Ask for action FROM player:
-            // while (p.isActive) {
-            //     if (p.ChooseAction() is ActionState.Player_Hit){
-            //         // Player chooses hit:
-            //         dealer.DealCard(deck, p);//dealer deals one card to the player.
-            //     }
-            //     if (p.ChooseAction() is ActionState.Player_Stay){break;}
-            // }
-            //     //For later use if more than one player implemented:
-                // for (var i = 1; i <peopleInRound.Count; i++){//TODO: OBS! needs to start with players! THEN dealer.
-
-                //     if (peopleInRound[i].ChooseAction() is ActionState.Player_Hit){
-                //         //Player chooses hit:
-                //         dealer.DealCard(deck, peopleInRound[i]);//dealer deals one card to player with index i.
-
-            //     }
-            //     if (peopleInRound[i].ChooseAction() is ActionState.Player_Stay){continue;}//Player i chooses to stay. next player's turnwe go to the next player.
-                
-                // if(pers.ChooseAction() is ActionState.Dealer_Hit){
-                //     dealer.DealCard(deck, dealer);//Deal card, as dealer's total was below 17
-                //     dealer.CheckHand();//Check the sum of the new hand.---
-                // }
-
-            
-
-            //check each player for 21 --> the player wins 1½ times their bet from dealer and player is done for the round //TODO: understand, if dealer needs to have a fixed amount of money, or just infinite
-            // foreach (Person pers in peopleInRound){
-            //     if (pers.CheckHand() == HandState.Player_Above21){//The currently player is BUST!
-
-            //     }
-            //     if (pers.CheckHand() == HandState.Dealer_Above21){//Dealer is BUST! Every remaining player wins twice their bet.
-
-            //     }
-
-
-            //     if (!pers.isDealer){
-
-            //     }
-            //     if (pers.isDealer){}
-            //     pers.CheckHand();
-            // }
-
-            //check each player for above 21
-
-            //else (if below 21) dealer asks for action (Hit or Stay) - no limit on how many hits a player can ask for in a turn.(keep asking)
-
+            //The dealer's turn
+            System.Console.WriteLine("It is now the dealer's turn.");
             //After everyone have made their choice to stay, the dealer flips their card (adds it to their hand.cardList)
             System.Console.WriteLine("Dealer flips over the second card, and their deck is now:");
             dealer.hand.cardList.Add(dealer.faceDownCardValue);
+            // dealer.hand.displayCardlist();
+            // System.Console.WriteLine("There are {0} cards in the dealer's hand, but this is the printed hand:", dealer.hand.cardList.Count);
+            // dealer.hand.displayCardlist();
+
+            System.Console.WriteLine("The dealer's hand is:");
             dealer.hand.displayCardlist();
-            System.Console.WriteLine("There are {0} cards in the dealer's hand, but this is the printed hand:", dealer.hand.cardList.Count);
-            dealer.hand.displayCardlist();
-            //Dealers total now dictates whether they must take another card or not. (below 17 or not)
+            //dealer's first ace (not any subsequent) counts as 11. Subsequent ones count as 1.
+            dealer.HandleAces();
+            //Check dealer's hand status and deal cards if prescribed
+            dealer.hand.status = dealer.CheckHand();
+            if (dealer.hand.status is HandState.Dealer_Below17){
+                //Deal one card to themselves
+                dealer.DealCard(deck, dealer);
+                //Check dealer's hand status after any addition to the hand.
+                dealer.hand.status = dealer.CheckHand();
+            }
 
-            //If dealer busts, every remaining player in the round wins twice their bet.
 
-            //If the dealer DOESN'T bust, only players with totals bigger than the dealer win twice their bet AND everyone else loses their bets.
+            GameResult roundResult = CompareHands(p, dealer);
+            //If player busts, they loses their bet to the dealer
+            if (roundResult is GameResult.Player_Bust){dealer.roundWinnings = p.bet; System.Console.WriteLine("You've gone Bust, and have lost this round. Your bet has been transfered to the dealer."); }
 
-            //HOWEVER! Anyone with th esame total as the dealer, get to keep their bet. (this is a "Push")
+            //If dealer busts, every remaining player in the round wins twice their bet from dealer
+            if (roundResult is GameResult.Dealer_Bust){dealer.bankroll-=p.bet*2; p.roundWinnings = p.bet*2; System.Console.WriteLine("The dealer went bust, so you won twice your bet from them."); }
+
+            if (roundResult is GameResult.Dealer_Wins){dealer.roundWinnings = p.bet; System.Console.WriteLine("The dealer won. Your bet has been transfered to them."); }
+
+            //check each player for Black Jack --> the player wins 3 times their bet from dealer
+            if (roundResult is GameResult.Dealer_BlackJack){dealer.bankroll-=p.bet*3; p.roundWinnings = p.bet*3; System.Console.WriteLine("BLACK JACK! You got Black Jack and won 3 times you bet from the dealer. Your winnings will be transfer."); }
+
+            //If dealer gets Black Jack, they win 3 times their bet from player
+            if (roundResult is GameResult.Player_BlackJack){dealer.roundWinnings = p.bet*3; System.Console.WriteLine("The dealer got Black Jack and won 3 times your bet from you."); }
+
+            //If the dealer DOESN'T bust, only players with totals bigger than the dealer win 4 times their bet AND everyone else loses their bets.
+            if (roundResult is GameResult.Player_Wins){dealer.bankroll-=p.bet*4; p.roundWinnings = p.bet*4;System.Console.WriteLine("You won 4 times your bet from the dealer."); }
+
+            //HOWEVER! Anyone with the same total as the dealer, get to keep their bet. (this is a "Push")
+            if (roundResult is GameResult.Push){p.roundWinnings = p.bet; System.Console.WriteLine("You had the same total as the dealer, and therefore win your bet back."); }
 
             //The round then ends with any winnings being deposited the the players's bankroll.
             TransferWinnings();
-            // foreach (Person p in r.peopleInRound){ // <-- possibly move this to round class.
-            //         if (!p.isActive) {r.RemovePersonFromRound(p);}
-            //     }
 
         } 
 
