@@ -1,0 +1,10 @@
+*.cache
+*.exe
+*.pdb
+*.dll
+*.json
+*.targets
+*.props
+*.editorconfig
+*.config
+Black Jack.csproj.FileListAbsolute.txt
