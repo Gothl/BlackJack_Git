@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/home/gothlip/.nuget/packages/": {}
+    "C:\\Users\\KOM\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gothlip/Documents/Specialisterne/Specialisterne_Git/Black Jack/Black Jack.csproj",
+      "projectUniqueName": "C:\\Users\\KOM\\Documents\\MyWork\\BlackJack_Git\\Black Jack\\Black Jack.csproj",
       "projectName": "Black Jack",
-      "projectPath": "/home/gothlip/Documents/Specialisterne/Specialisterne_Git/Black Jack/Black Jack.csproj",
-      "packagesPath": "/home/gothlip/.nuget/packages/",
-      "outputPath": "/home/gothlip/Documents/Specialisterne/Specialisterne_Git/Black Jack/obj/",
+      "projectPath": "C:\\Users\\KOM\\Documents\\MyWork\\BlackJack_Git\\Black Jack\\Black Jack.csproj",
+      "packagesPath": "C:\\Users\\KOM\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\KOM\\Documents\\MyWork\\BlackJack_Git\\Black Jack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gothlip/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\KOM\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
