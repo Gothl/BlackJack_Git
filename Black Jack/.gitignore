@@ -7,4 +7,5 @@
 *.props
 *.editorconfig
 *.config
-Black Jack.csproj.FileListAbsolute.txt
+Black\ Jack.GeneratedMSBuildEditorConfig.editorconfig
+Black\ Jack.csproj.FileListAbsolute.txt
