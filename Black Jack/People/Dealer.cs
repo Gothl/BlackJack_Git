@@ -68,6 +68,7 @@ namespace Black_Jack {
             }
             //else convert none
             //return (false, 0);
+            hand.CalculateTotal();
             System.Console.WriteLine("Dealer gave an Aces the value 11.");
         }
 

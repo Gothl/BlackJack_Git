@@ -37,14 +37,17 @@ namespace Black_Jack {
                 case ( < HandState.Bust    , HandState.Bust         ): return GameResult.Dealer_Bust;// the < is used as Bust has the highest enumeration.
                 case (HandState.BlackJack  , HandState.BlackJack    ): return GameResult.Push;
                 case (HandState.EqualTo21  , HandState.BlackJack    ): return GameResult.Dealer_BlackJack;
+                case (< HandState.EqualTo21, HandState.EqualTo21    ): return GameResult.Dealer_Wins;
+                case (HandState.EqualTo21  , < HandState.EqualTo21  ): return GameResult.Player_Wins;
+                
                 case (HandState.BlackJack  , < HandState.BlackJack  ): return GameResult.Player_BlackJack;//BlackJack has higher enumeration than any other from 21 to 2.
-                case (< HandState.EqualTo21, < HandState.EqualTo21  ): if(p.hand.total == d.hand.total){return GameResult.Push;}
+                case (<= HandState.EqualTo21, <= HandState.EqualTo21  ): if(p.hand.total == d.hand.total){return GameResult.Push;}
                                                                        if(p.hand.total <  d.hand.total){return GameResult.Dealer_Wins;}
                                                                        else {//if(p.hand.total >  d.hand.total){
                                                                            return GameResult.Player_Wins;
                                                                     }
                 default:
-                    return GameResult.Unknown;
+                    throw new Exception("Compare Hands fell through.");
             }
 
         }
